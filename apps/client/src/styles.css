@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+    --font-mono: "JetBrains Mono", "monospace";
     --color-primary: #e11d48;
-    --color-bg-base: #f2f2f5;
+    --color-bg-base: #f9f2f5;
     --color-bg-surface: #f4f4f5;
+    --color-bg-container: #f6f6f6;
     --color-text-base: #6c6f85;
     --color-text-muted: #71717a;
 }
@@ -16,8 +18,8 @@
 
 .grid-layout {
     background-image:
-    linear-gradient(to right, #333 1px, transparent 1px),
-    linear-gradient(to bottom, #333 1px, transparent 1px);
+        linear-gradient(to right, #333 1px, transparent 1px),
+        linear-gradient(to bottom, #333 1px, transparent 1px);
 }
 
 @keyframes blink {

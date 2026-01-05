@@ -1,32 +1,37 @@
-import { Component, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NgIconsModule } from '@ng-icons/core';
+import { ColorChooserComponent } from '../ui/elements/color-chooser/color-chooser';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: "navbar.html",
+  templateUrl: './navbar.html',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, NgIconsModule, ColorChooserComponent]
 })
 export class NavbarComponent {
-  private router = inject(Router);
+  private _router = inject(Router);
 
-  private url = toSignal(
-    this.router.events.pipe(
-      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-      map(e => e.urlAfterRedirects)
-    ),
-    { initialValue: this.router.url }
+  protected currentPath = toSignal(
+    this._router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(event => (event as NavigationEnd).urlAfterRedirects),
+      map(url => {
+        if (url === '/') return '';
+        return url.replace(/^\/|\/$/g, '');
+      })
+    )
   );
 
-  protected currentPath = computed(() => {
-    const rawUrl = this.url();
-    const path = rawUrl.split('?')[0].split('#')[0];
+  protected isMobileMenuOpen = signal(false);
 
-    if (path === '/') {
-      return '';
-    }
+  toggleMobileMenu() {
+    this.isMobileMenuOpen.update(v => !v);
+  }
 
-    return path.replace(/^\/|\/$/g, '');
-  });
+  closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+  }
 }

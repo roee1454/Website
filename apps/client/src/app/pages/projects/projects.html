@@ -1,44 +1,40 @@
 <section class="mx-auto max-w-6xl space-y-8 px-4 py-16 md:px-6">
     <div class="space-y-6">
-        <h1 class="text-3xl font-bold md:text-4xl">All Projects</h1>
+        <div class="flex items-center gap-4">
+            <div class="text-primary">
+                <ng-icon name="lucideFolder" size="28"></ng-icon>
+            </div>
+            <h1 class="text-2xl font-bold md:text-4xl">Personal Projects</h1>
+        </div>
         <div class="space-y-4">
             <p class="text-lg text-text-muted max-w-2xl">
                 Explore a collection of my work fetched directly from GitHub:
             </p>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-text-muted max-w-2xl">
-                <li class="flex items-center gap-2">
-                    <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                    <span>Personal projects</span>
-                </li>
-                <li class="flex items-center gap-2">
-                    <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                    <span>IDF side projects</span>
-            </ul>
         </div>
     </div>
 
     @if (userInfo.result$ | async; as result) {
-        @if (result.isLoading) {
-            <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @for (i of [1, 2, 3, 4, 5, 6]; track $index) {
-                    <app-card-skeleton></app-card-skeleton>
-                }
-            </div>
+    @if (result.isLoading) {
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (i of [1, 2, 3, 4, 5, 6]; track $index) {
+        <app-card-skeleton></app-card-skeleton>
         }
+    </div>
+    }
 
-        @if (result.isError) {
-            <div class="py-20 text-center space-y-4">
-                <p class="text-2xl font-semibold">Oops! Failed to load projects.</p>
-                <p class="text-text-muted">Maybe the GitHub API is having a bad day?</p>
-            </div>
-        }
+    @if (result.isError) {
+    <div class="py-20 text-center space-y-4">
+        <p class="text-2xl font-semibold">Oops! Failed to load projects.</p>
+        <p class="text-text-muted">Maybe the GitHub API is having a bad day?</p>
+    </div>
+    }
 
-        @if (result.data && result.data.repos) {
-            <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @for (repo of result.data.repos; track repo.id) {
-                    <app-project-card [project]="mapRepoToProject(repo)"></app-project-card>
-                }
-            </div>
+    @if (result.data && result.data.repos) {
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (repo of result.data.repos; track repo.id) {
+        <app-project-card [project]="mapRepoToProject(repo)"></app-project-card>
         }
+    </div>
+    }
     }
 </section>

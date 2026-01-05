@@ -1,8 +1,8 @@
 <main class="flex-1 px-0 py-8 md:px-5">
     <div class="mx-auto max-w-6xl space-y-8 px-4 py-8 md:px-6">
         <section class="space-y-6 px-4 md:px-0">
-            <h1 class="text-3xl font-bold md:text-4xl">
-                Hey, I'm
+            <h1 class="text-2xl font-bold md:text-4xl w-fit" [style.view-transition-name]="'hero-title'">
+                Hi, I'm
                 <span class="text-primary">
                     Roee Heily
                 </span>
@@ -11,21 +11,23 @@
                 I'm currently working as a Software Developer @
                 <text-link content="IDF"
                     url="https://www.idf.il/%D7%90%D7%AA%D7%A8%D7%99-%D7%99%D7%97%D7%99%D7%93%D7%95%D7%AA/%D7%94%D7%97%D7%98%D7%99%D7%91%D7%94-%D7%94%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%AA-%D7%9C%D7%99%D7%91%D7%A9%D7%94/%D7%90%D7%95%D7%93%D7%95%D7%AA/" />.
-                I've written e2e software from idea level to execution.
-                Seeing my code actually help people at scale is what keeps me building.
-                Currently building an AI animation software.
+                <br>
+                My greatest strength is my attention to detail, which is also my greatest weakness.
+                What keeps me building is the thrill of figuring out what I haven't solved yet and seeing my work
+                actually help people.
             </p>
-            <div class="flex flex-row items-center gap-4">
+            <div class="flex flex-row flex-wrap items-center gap-4">
                 @for (social of socials; track social.text) {
-                <social-link [icon]="social.icon" [url]="social.url" [text]="social.text" />
+                <social-link [icon]="social.icon" [url]="social.url" [text]="social.text"
+                    [style.view-transition-name]="'social-' + social.text" />
                 <span class="text-text-muted text-sm">|</span>
                 }
-                <a
-                    routerLink="/about"
-                    class="group transition-all duration-300 cursor-pointer flex items-center gap-2 text-text-base hover:text-primary">
-                    <span>Learn more about me</span>
-                    <ng-icon class="transition-transform duration-300 group-hover:translate-x-1" name="lucideArrowRight"
-                        size="14" />
+                <a routerLink="/about"
+                    class="group flex items-center gap-2 text-text-base transition-all duration-300 hover:text-primary">
+                    <span class="leading-none">Learn more about me</span>
+                    <ng-icon
+                        class="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1"
+                        name="lucideArrowRight" size="14" />
                 </a>
             </div>
         </section>

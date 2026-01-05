@@ -15,13 +15,12 @@ import { Project } from "@/app/types";
 })
 
 export class FeaturedProjectsComponent {
-    // Signal for user info
     protected userInfo = inject(GithubService).getUserInfo()
-    protected featuredProjects = ["BetterNext", "DTransfer"]
+    protected featuredProjects = ["DTransfer", "MotionStudioAI"]
 
     mapRepoToProject(repo: GithubRepo): Project {
         const pushedDate = new Date(repo.pushed_at);
-        const isNew = (new Date().getTime() - pushedDate.getTime()) < (1000 * 60 * 60 * 24 * 30); // 30 days
+        const isNew = (new Date().getTime() - pushedDate.getTime()) < (1000 * 60 * 60 * 24 * 14); // 14 Days
 
         return {
             id: repo.id,
@@ -32,7 +31,7 @@ export class FeaturedProjectsComponent {
             stars: repo.stargazers_count,
             forks: repo.forks_count,
             primaryLanguage: repo.language,
-            languages: [], // In a real app, you might fetch these separately or have them in the data
+            languages: [],
             topics: repo.topics,
             updatedAt: repo.updated_at,
             pushedAt: repo.pushed_at,

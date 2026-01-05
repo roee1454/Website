@@ -1,0 +1,10 @@
+<div class="flex flex-wrap gap-3">
+    @for (color of colors; track color.name) {
+    <button (click)="setColor(color)" [title]="color.name" [ngClass]="[
+            color.class,
+            'h-6 w-6 rounded-full transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-surface',
+            selectedColor() === color.value ? 'ring-2 ring-offset-2 ring-offset-bg-surface scale-110' : ''
+        ]">
+    </button>
+    }
+</div>

@@ -1,5 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { AsyncPipe } from "@angular/common";
+import { NgIconsModule } from "@ng-icons/core";
 import { GithubService } from "@/app/services/github.service";
 import { ProjectCardComponent } from "@/app/components/ui/elements/project-card/project-card";
 import { CardSkeletonComponent } from "@/app/components/ui/elements/card-skeleton/card-skeleton";
@@ -10,7 +11,7 @@ import { Project } from "@/app/types";
   selector: "app-projects",
   templateUrl: "./projects.html",
   standalone: true,
-  imports: [AsyncPipe, ProjectCardComponent, CardSkeletonComponent],
+  imports: [AsyncPipe, NgIconsModule, ProjectCardComponent, CardSkeletonComponent],
 })
 export class ProjectsComponent {
   protected userInfo = inject(GithubService).getUserInfo();

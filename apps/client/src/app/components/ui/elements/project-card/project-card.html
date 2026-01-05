@@ -1,6 +1,5 @@
-<a [href]="project().url" target="_blank"
-    [style.view-transition-name]="'project-' + project().id"
-    class="group relative flex flex-col h-full overflow-hidden border border-text-muted/10 bg-bg-surface/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-bg-surface/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<a [href]="project().url" target="_blank" [style.view-transition-name]="'project-' + project().id"
+    class="group relative flex flex-col h-full overflow-hidden border border-text-muted/10 bg-bg-container p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-bg-surface/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
 
     <!-- Top Bar: Icon and Type -->
     <div class="mb-4 flex items-center justify-between">
@@ -30,8 +29,13 @@
     <!-- Title and Description -->
     <div class="flex-1 space-y-2">
         <h3
-            class="text-xl font-bold tracking-tight text-text-base transition-colors group-hover:text-primary flex items-center gap-2">
+            class="text-xl font-bold tracking-tight text-text-base transition-colors group-hover:text-primary flex flex-wrap items-center gap-2">
             {{ project().name }}
+            @if (project().isTemplate) {
+            <span class="rounded-full bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-indigo-600">
+                Template
+            </span>
+            }
             @if (project().isWip) {
             <span class="rounded-full bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-600">
                 WIP
@@ -43,7 +47,7 @@
                 New
             </span>
             }
-            
+
         </h3>
         <p class="line-clamp-2 text-sm leading-relaxed text-text-muted">
             {{ project().description || 'No description provided' }}
@@ -51,8 +55,9 @@
     </div>
 
     <!-- Tech Stack (Topics) -->
-    <div class="mt-4 flex flex-wrap gap-1.5">
-        @for (topic of project().topics.slice(0, 3); track topic) {
+    <div class="mt-4 flex flex-wrap items-center gap-1.5">
+        <ng-icon name="lucideTag" size="14" class="text-text-muted/50 mr-0.5" />
+        @for (topic of project().topics.slice(0, 6); track topic) {
         <span
             class="rounded-full bg-text-muted/5 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-text-muted transition-colors group-hover:bg-primary/5 group-hover:text-primary">
             {{ topic }}
@@ -70,18 +75,6 @@
                 <span>{{ project().primaryLanguage }}</span>
             </div>
             }
-
-            <!-- Stars -->
-            <div class="flex items-center gap-1.5 transition-colors group-hover:text-primary">
-                <ng-icon name="lucideStar" size="14"></ng-icon>
-                <span>{{ project().stars }}</span>
-            </div>
-
-            <!-- Forks -->
-            <div class="flex items-center gap-1.5">
-                <ng-icon name="lucideGitFork" size="14"></ng-icon>
-                <span>{{ project().forks }}</span>
-            </div>
         </div>
 
         <span class="text-[10px] font-medium text-text-muted">

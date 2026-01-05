@@ -22,6 +22,11 @@ export class HeroComponent {
             icon: "lucideLinkedin",
             text: "LinkedIn",
             url: "https://www.linkedin.com/in/roee-heily-5176872a6/"
+        },
+        {
+            icon: "lucideMail",
+            text: "Email",
+            url: "mailto:roee1454@gmail.com"
         }
     ] satisfies Social[]
 }
