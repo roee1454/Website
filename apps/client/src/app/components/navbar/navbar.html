@@ -1,0 +1,19 @@
+<nav class="header sticky top-0 z-10 flex h-24 items-center justify-between p-5 pb-10 select-none">
+    <div class="flex items-center text-xl font-bold tracking-tight">
+        <a routerLink="/" class="text-primary hover:opacity-80 transition-opacity no-underline">~</a>
+        <span class="text-text-base">/</span>
+        @if (currentPath()) {
+        <span class="text-text-base cursor-default">{{ currentPath() }}</span>
+        <span class="text-text-base cursor-default">/</span>
+        }
+        <span class="text-text-base text-sm font-light animate-[blink_1s_step-end_infinite] ml-0.5 mb-1">|</span>
+    </div>
+    <div class="flex gap-8">
+        <a routerLink="/about" routerLinkActive="text-primary"
+            class="text-text-muted text-sm transition-all hover:text-primary">About</a>
+        <a routerLink="/projects" routerLinkActive="text-primary"
+            class="text-text-muted text-sm transition-all hover:text-primary">Projects</a>
+        <a target="_blank" routerLink="/resume" routerLinkActive="text-primary"
+            class="text-text-muted text-sm transition-all hover:text-primary">Resume</a>
+    </div>
+</nav>

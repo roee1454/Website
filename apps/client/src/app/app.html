@@ -1,0 +1,8 @@
+@if (!isResumePage()) {    
+<div class="mx-auto flex min-h-screen max-w-[90%] flex-col md:max-w-[80%]">
+    <app-navbar />
+    <router-outlet />
+</div>
+} @else {
+<router-outlet />
+}

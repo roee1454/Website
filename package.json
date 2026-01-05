@@ -1,0 +1,19 @@
+{
+  "name": "personal-portifolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "@ng-icons/core": "^33.0.0",
+    "@ng-icons/lucide": "^33.0.0",
+    "@ng-icons/simple-icons": "^33.0.0",
+    "dotenv-cli": "^11.0.0"
+  }
+}

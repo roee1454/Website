@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #e11d48;
+    --color-bg-base: #f2f2f5;
+    --color-bg-surface: #f4f4f5;
+    --color-text-base: #6c6f85;
+    --color-text-muted: #71717a;
+}
+
+@layer base {
+    body {
+        @apply bg-bg-base text-text-base antialiased font-mono m-0 p-0;
+    }
+}
+
+.grid-layout {
+    background-image:
+    linear-gradient(to right, #333 1px, transparent 1px),
+    linear-gradient(to bottom, #333 1px, transparent 1px);
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
