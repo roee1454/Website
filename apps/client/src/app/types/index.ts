@@ -44,3 +44,14 @@ export type Project = {
     };
     license?: string;
 }
+
+export type Experience = {
+    src: string,
+    title: string,
+    past: boolean,
+    position: string,
+    descirption: string,
+    from: Date,
+    to: Date,
+    siteUrl: string,
+}

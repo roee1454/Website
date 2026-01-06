@@ -10,15 +10,139 @@
     --color-text-muted: #71717a;
 }
 
+@property --progress {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+}
+
 @layer base {
     html {
         /* scrollbar-gutter: stable; Removed to fix blur effect */
         scrollbar-width: thin;
         scrollbar-color: var(--color-primary) transparent;
+        scrollbar-gutter: stable;
+        overflow-y: auto;
     }
 
     body {
         @apply bg-bg-base text-text-base antialiased font-mono m-0 p-0;
+    }
+
+    @keyframes glitch-rgb-1 {
+
+        0%,
+        100% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(-3px, 2px);
+        }
+
+        40% {
+            transform: translate(3px, -1px);
+        }
+
+        60% {
+            transform: translate(-2px, 1px);
+        }
+
+        80% {
+            transform: translate(2px, -2px);
+        }
+    }
+
+    @keyframes glitch-rgb-2 {
+
+        0%,
+        100% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(3px, -2px);
+        }
+
+        40% {
+            transform: translate(-3px, 1px);
+        }
+
+        60% {
+            transform: translate(2px, -1px);
+        }
+
+        80% {
+            transform: translate(-2px, 2px);
+        }
+    }
+
+    @keyframes glitch-rgb-3 {
+
+        0%,
+        100% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(-2px, 0);
+        }
+
+        40% {
+            transform: translate(2px, 2px);
+        }
+
+        60% {
+            transform: translate(-1px, -2px);
+        }
+
+        80% {
+            transform: translate(1px, 0);
+        }
+    }
+
+    @keyframes glitch-slice {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        10% {
+            transform: translateX(-8px);
+        }
+
+        30% {
+            transform: translateX(6px);
+        }
+
+        50% {
+            transform: translateX(-4px);
+        }
+
+        70% {
+            transform: translateX(5px);
+        }
+
+        90% {
+            transform: translateX(-3px);
+        }
+    }
+
+    .animate-glitch-rgb-1 {
+        animation: glitch-rgb-1 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    }
+
+    .animate-glitch-rgb-2 {
+        animation: glitch-rgb-2 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 50ms both infinite;
+    }
+
+    .animate-glitch-rgb-3 {
+        animation: glitch-rgb-3 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms both infinite;
+    }
+
+    .animate-glitch-slice {
+        animation: glitch-slice 500ms steps(2, jump-none) both infinite;
     }
 
     /* Webkit Scrollbar Styling */
@@ -33,9 +157,13 @@
 
     ::-webkit-scrollbar-thumb {
         background-color: var(--color-primary);
-        border-radius: 9999px; /* Rounded pill shape */
-        border: 2px solid transparent; /* Creates padding effect if background-clip is used, but treating as solid based on request */
-        background-clip: content-box; /* Makes the thumb look slightly smaller/floating if border is transparent */
+        border-radius: 9999px;
+        /* Rounded pill shape */
+        border: 2px solid transparent;
+        box-shadow: none;
+        /* Creates padding effect if background-clip is used, but treating as solid based on request */
+        background-clip: content-box;
+        /* Makes the thumb look slightly smaller/floating if border is transparent */
     }
 
     ::-webkit-scrollbar-button {
@@ -50,6 +178,7 @@
 }
 
 @keyframes blink {
+
     from,
     to {
         opacity: 1;

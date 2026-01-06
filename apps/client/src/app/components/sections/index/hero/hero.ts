@@ -4,10 +4,11 @@ import { SocialLinkComponent } from "../../../ui/typography/social-link/social-l
 import { Social } from "@/app/types";
 import { NgIconsModule } from "@ng-icons/core";
 import { RouterLink } from "@angular/router";
+import { ExperienceComponent } from "../experience/experience";
 
 @Component({
     selector: "app-hero-component",
-    imports: [TextLink, SocialLinkComponent, NgIconsModule, RouterLink],
+    imports: [TextLink, SocialLinkComponent, NgIconsModule, RouterLink, ExperienceComponent],
     templateUrl: "hero.html"
 })
 

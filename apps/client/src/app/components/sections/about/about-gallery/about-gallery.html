@@ -1,0 +1,29 @@
+<div class="space-y-12">
+        <div class="flex items-center gap-4 border-b border-text-muted/10 pb-6">
+            <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <ng-icon name="lucideCamera" size="24"></ng-icon>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold">More photos</h2>
+                <p class="text-text-muted text-sm font-medium tracking-wide">(Shot with iPhone 15 Pro Max)</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Photo 1 -->
+            <div
+                class="group relative aspect-4/3 rounded-2xl overflow-hidden bg-bg-surface shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                <img ngSrc="/resources/bottom1.jpg" alt="Gallery photo 1"
+                    class="object-cover transition-transform duration-700 group-hover:scale-105" fill priority>
+                <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10"></div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div
+                class="group relative aspect-4/3 rounded-2xl overflow-hidden bg-bg-surface shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                <img ngSrc="/resources/bottom2.jpg" alt="Gallery photo 2"
+                    class="object-cover transition-transform duration-700 group-hover:scale-105" fill priority>
+                <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10"></div>
+            </div>
+        </div>
+    </div>

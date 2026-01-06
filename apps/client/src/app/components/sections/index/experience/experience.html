@@ -1,0 +1,9 @@
+<div class="flex flex-wrap items-center gap-2">
+    @for (exp of experiences; track exp.title; let isLast = $last) {
+    <app-experience-popover [experience]="exp" />
+
+    @if (!isLast) {
+    <span class="text-primary font-medium text-sm">/</span>
+    }
+    }
+</div>

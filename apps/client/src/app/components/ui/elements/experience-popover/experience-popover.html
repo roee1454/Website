@@ -1,0 +1,86 @@
+<div class="relative inline-block">
+    <!-- Trigger Button -->
+    <button (click)="togglePopover()"
+        class="group flex items-center gap-2 px-2 py-1 transition-all duration-300 hover:bg-bg-surface/50 rounded-md border border-transparent hover:border-primary/20 cursor-pointer"
+        type="button">
+        <!-- Company Logo -->
+        <div
+            class="relative h-6 w-6 overflow-hidden rounded-md border border-text-muted/10 bg-bg-container transition-all duration-300 group-hover:border-primary/30">
+            <img [ngSrc]="experience().src" alt="{{ experience().title }} logo" class="h-full w-full object-cover"
+                width="24" height="24" priority />
+        </div>
+        <!-- Title and Past Indicator -->
+        <div class="flex items-center gap-1.5">
+            <span class="text-sm font-medium text-text-base transition-colors group-hover:text-primary">
+                {{ experience().title }}
+            </span>
+            @if (experience().past) {
+            <span class="text-xs font-normal text-text-muted/60">(past)</span>
+            }
+        </div>
+        <!-- Chevron Icon -->
+        <ng-icon [name]="isPopoverOpen() ? 'lucideChevronDown' : 'lucideChevronUp'" size="14"
+            class="text-text-muted transition-all duration-300 group-hover:text-primary" />
+    </button>
+
+    <!-- Popover Content -->
+    @if (isPopoverOpen()) {
+    <div class="absolute left-0 bottom-full z-50 mb-2 w-80 animate-in fade-in slide-in-from-bottom-2 duration-200">
+        <div class="overflow-hidden rounded-lg border border-primary/20 bg-bg-container shadow-xl">
+            <!-- Header -->
+            <div class="border-b border-text-muted/10 p-3">
+                <div class="flex items-start justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="h-10 w-10 overflow-hidden rounded-md border border-primary/20 bg-bg-surface">
+                            <img [ngSrc]="experience().src" alt="{{ experience().title }} logo"
+                                class="h-full w-full object-cover" width="40" height="40" priority />
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-text-base">{{ experience().title }}</h3>
+                            <p class="text-xs font-medium text-primary">{{ experience().position }}</p>
+                        </div>
+                    </div>
+                    <button (click)="closePopover()"
+                        class="rounded-md p-1 text-text-muted transition-colors hover:bg-bg-surface hover:text-primary"
+                        type="button">
+                        <ng-icon name="lucideX" size="16" />
+                    </button>
+                </div>
+            </div>
+            <!-- Content -->
+            <div class="space-y-3 p-3">
+                <!-- Description -->
+                <div>
+                    <p class="text-xs leading-relaxed text-text-muted">
+                        {{ experience().descirption }}
+                    </p>
+                </div>
+                <!-- Duration -->
+                <div class="flex items-center gap-2 rounded-md bg-bg-surface/50 p-2">
+                    <ng-icon name="lucideCalendar" size="14" class="text-primary" />
+                    <span class="text-xs font-medium text-text-base">
+                        {{ formatDate(experience().from) }} -
+                        @if (experience().past) {
+                        {{ formatDate(experience().to) }}
+                        } @else {
+                        <span class="text-primary">Present</span>
+                        }
+                    </span>
+                </div>
+                <!-- Website Link -->
+                @if (experience().siteUrl) {
+                <a [href]="experience().siteUrl" target="_blank"
+                    class="group flex items-center justify-between rounded-md border border-text-muted/10 bg-bg-surface/30 p-2 transition-all duration-300 hover:border-primary/30 hover:bg-primary/5"
+                    (click)="$event.stopPropagation()">
+                    <span class="text-xs font-medium text-text-base group-hover:text-primary">
+                        Visit Website
+                    </span>
+                    <ng-icon name="lucideExternalLink" size="14"
+                        class="text-text-muted transition-colors group-hover:text-primary" />
+                </a>
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>

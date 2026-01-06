@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideIcons } from '@ng-icons/core'
 import { routes } from './app.routes'
-import { lucideLinkedin, lucideGithub, lucideArrowRight, lucideStars, lucideLoader2, lucideStar, lucideGitFork, lucideExternalLink, lucideFolder, lucideTag, lucideInfo, lucideCamera, lucideMenu, lucideX, lucidePalette, lucideMail } from '@ng-icons/lucide'
+import { lucideLinkedin, lucideGithub, lucideArrowRight, lucideStars, lucideLoader2, lucideStar, lucideGitFork, lucideExternalLink, lucideFolder, lucideTag, lucideInfo, lucideCamera, lucideMenu, lucideX, lucidePalette, lucideMail, lucideChevronUp, lucideChevronDown, lucideCalendar } from '@ng-icons/lucide'
 import { provideQueryClient } from '@ngneat/query'
 import { QueryClient } from "@tanstack/query-core"
 import { AXIOS_CLIENT, client } from './services/axios.service';
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     { provide: AXIOS_CLIENT, useValue: client },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withViewTransitions({ skipInitialTransition: true })),
-    provideIcons({ lucideGithub, lucideLinkedin, lucideArrowRight, lucideStars, lucideLoader2, lucideStar, lucideGitFork, lucideExternalLink, lucideFolder, lucideTag, lucideInfo, lucideCamera, lucideMenu, lucideX, lucidePalette, lucideMail }),
+    provideIcons({ lucideGithub, lucideLinkedin, lucideArrowRight, lucideStars, lucideLoader2, lucideStar, lucideGitFork, lucideExternalLink, lucideFolder, lucideTag, lucideInfo, lucideCamera, lucideMenu, lucideX, lucidePalette, lucideMail, lucideChevronUp, lucideChevronDown, lucideCalendar }),
     provideQueryClient(() => new QueryClient())
   ]
 };

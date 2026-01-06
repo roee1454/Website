@@ -1,0 +1,86 @@
+ <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <!-- Text Content -->
+        <div class="space-y-8 order-2 lg:order-1">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 text-primary">
+                    <ng-icon name="lucideInfo" size="24"></ng-icon>
+                    <span class="text-xl font-medium tracking-wide">About Me</span>
+                </div>
+
+                <h1 class="w-fit text-2xl font-bold leading-tight md:text-4xl"
+                    [style.view-transition-name]="'hero-title'">
+                    Hi, I'm <span class="text-primary">Roee Heily</span>
+                </h1>
+
+                <div class="space-y-6 text-lg text-text-muted leading-relaxed max-w-xl">
+                    <p>
+                        I'm a 21-year-old Software Developer @ <text-link content="IDF" url=""></text-link>
+                        <br> based @ <text-link content="Tel Aviv, Israel" url=""></text-link>.
+                    </p>
+                    <p>
+                        One of my notable projects is an <popover-text trigger="Android Landscape Explorer">
+                            Due to classification (IDF), I can't name the project or
+                            display its source code publicly or reveal its reasoning.
+                        </popover-text>
+                    </p>
+                    <p>
+                        Outside of software, I enjoy hitting the gym, drinking beer, playing 8-ball pool, and
+                        snowboarding. Feel free to contact me!
+                    </p>
+
+                    <div class="flex flex-row flex-wrap items-center gap-4 pt-2">
+                        @for (social of socials; track social.text) {
+                        <social-link [icon]="social.icon" [url]="social.url" [text]="social.text"
+                            [style.view-transition-name]="'social-' + social.text" />
+                        <span class="text-text-muted text-sm">|</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="order-1 lg:order-2 flex justify-end rotate-3">
+            <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
+                [class.cursor-wait]="isHovered() && !hasSwapped()" [class.cursor-default]="hasSwapped()"
+                class="group relative w-full max-w-md aspect-square rounded-3xl bg-bg-surface shadow-[0_8px_40px_rgb(0,0,0,0.12)] overflow-hidden">
+
+                <!-- Progress Border Layer -->
+                <div class="absolute inset-0 z-0"
+                    [style.background]="'conic-gradient(var(--color-primary) var(--progress), transparent 0deg)'"
+                    [style.--progress]="isHovered() && !hasSwapped() ? '100%' : '0%'"
+                    [class.transition-[--progress]]="!hasSwapped()" [class.duration-2000]="!hasSwapped()"
+                    [class.ease-linear]="!hasSwapped()">
+                </div>
+
+                <!-- Glitch Layers -->
+                @if (isGlitching()) {
+                <!-- RGB Channel 1 (Red/Primary var) -->
+                <div class="absolute inset-0 z-20 mix-blend-screen opacity-50 animate-glitch-rgb-1"
+                    [style.background]="glitchColors().r">
+                </div>
+
+                <!-- RGB Channel 2 (Green/Lighter var) -->
+                <div class="absolute inset-0 z-20 mix-blend-screen opacity-50 animate-glitch-rgb-2"
+                    [style.background]="glitchColors().g">
+                </div>
+
+                <!-- RGB Channel 3 (Blue/Hue Shift var) -->
+                <div class="absolute inset-0 z-20 mix-blend-screen opacity-50 animate-glitch-rgb-3"
+                    [style.background]="glitchColors().b">
+                </div>
+
+                <!-- Slice Overlay -->
+                <div class="absolute inset-0 z-30 animate-glitch-slice mix-blend-overlay opacity-50"
+                    style="background: repeating-linear-gradient(transparent 0, transparent 2px, white 2px, white 4px)">
+                </div>
+                }
+
+                <!-- Inner Content (Mask) -->
+                <div class="absolute inset-[4px] z-10 rounded-[calc(1.5rem-4px)] overflow-hidden bg-bg-surface">
+                    <img [ngSrc]="hasSwapped() ? '/resources/main2.png' : '/resources/main.jpg'" alt="Roee Heily"
+                        class="object-cover transition-opacity duration-300" fill priority>
+                </div>
+            </div>
+        </div>
+    </div>
