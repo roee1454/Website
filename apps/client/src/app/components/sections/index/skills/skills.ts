@@ -28,11 +28,15 @@ export class SkillsSectionComponent {
     },
     {
       name: "Backend",
-      items: "Nest.js, Express.js, FastAPI, Flask"
+      items: "Nest.js, Express.js, Flask, Ktor"
     },
     {
       name: 'Databases',
       items: 'MySQL, PostgreSQL, Redis, Firebase, MongoDB'
+    },
+    {
+      name: "Computer Vision",
+      items: "OpenCV, Numpy/Eigen, FFmpeg, Ultralytics/Yolo",
     },
     {
       name: 'Deployment & Cloud',
@@ -43,6 +47,8 @@ export class SkillsSectionComponent {
   protected info = [
     { key: 'OS', value: 'Arch Linux x86_64' },
     { key: 'Shell', value: 'bash 5.2.21' },
+    { key: "Title", value: "Software Developer" },
+    { key: 'Experience', value: "3 Years" }
   ];
 
   open() {
