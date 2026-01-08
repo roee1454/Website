@@ -17,7 +17,9 @@
     @if (result.data && result.data.repos) {
     <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @for (repo of result.data.repos; track repo.id) {
-        <app-project-card [project]="mapRepoToProject(repo)"></app-project-card>
+            @if (!BLACKLIST.includes(repo.name)) {
+                <app-project-card [project]="mapRepoToProject(repo)"></app-project-card>
+            }
         }
     </div>
     }

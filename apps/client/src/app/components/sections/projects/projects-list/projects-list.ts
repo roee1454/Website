@@ -15,6 +15,7 @@ import { Project } from "@/app/types";
 })
 export class ProjectsListSection {
     protected userInfo = inject(GithubService).getUserInfo();
+    protected readonly BLACKLIST = ["Portifolio"]
 
     mapRepoToProject(repo: GithubRepo): Project {
         const pushedDate = new Date(repo.pushed_at);

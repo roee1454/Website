@@ -1,0 +1,54 @@
+<footer class="mt-auto w-full border-t border-text-muted/10 bg-bg-container/50 backdrop-blur-sm">
+    <div class="flex flex-wrap md:flex-nowrap items-center justify-between text-[11px] font-mono tracking-wide">
+        <div class="flex items-center w-auto order-1">
+            <div class="hidden sm:block px-3 py-1.5 bg-primary text-bg-base font-bold uppercase">
+                NORMAL
+            </div>
+
+            <div class="hidden sm:flex px-3 py-1.5 items-center gap-2 border-r border-text-muted/10 text-text-muted">
+                <ng-icon name="lucideGitFork" size="12"></ng-icon>
+                <span>main</span>
+            </div>
+
+            <div class="px-3 py-1.5 flex items-center gap-3 border-r border-text-muted/10 text-text-base">
+                <div class="flex items-center gap-1.5" title="Angular">
+                    <ng-icon name="simpleAngular" size="12"></ng-icon>
+                    <span class="hidden sm:inline">Angular</span>
+                </div>
+                <div class="flex items-center gap-1.5" title="NestJS">
+                    <ng-icon name="simpleNestjs" size="12"></ng-icon>
+                    <span class="hidden sm:inline">NestJS</span>
+                </div>
+            </div>
+
+            <a [href]="sourceUrl" target="_blank"
+                class="px-3 py-1.5 flex items-center gap-1.5 hover:bg-bg-surface hover:text-primary transition-colors text-text-muted border-r md:border-r-0 border-text-muted/10">
+                <ng-icon name="lucideExternalLink" size="11"></ng-icon>
+                <span>src</span>
+            </a>
+        </div>
+
+        <div
+            class="order-3 w-full md:w-auto md:order-2 border-t md:border-t-0 border-text-muted/10 md:border-none flex justify-center">
+            <div class="px-4 py-1.5 text-text-muted text-[10px] md:text-[11px]">
+                Roee Heily &copy; {{ currentYear }}
+            </div>
+        </div>
+
+        <div class="flex items-center w-auto order-2 md:order-3 md:ml-auto">
+            <div class="flex items-center border-l-0 md:border-l border-text-muted/10">
+                @for (social of socials; track social.label) {
+                <a [href]="social.url" target="_blank" rel="noopener noreferrer"
+                    class="px-2.5 py-1.5 text-text-muted hover:text-primary hover:bg-bg-surface transition-colors duration-200"
+                    [title]="social.label">
+                    <ng-icon [name]="social.icon" size="13" class="block"></ng-icon>
+                </a>
+                }
+            </div>
+
+            <div class="px-3 py-1.5 bg-primary/10 text-primary font-bold hidden sm:block">
+                Ln 100%
+            </div>
+        </div>
+    </div>
+</footer>

@@ -161,33 +161,36 @@
     }
 
     @keyframes typewriter {
-        from { width: 0; }
-        to { width: 9ch; }
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 9ch;
+        }
     }
 
-    @keyframes cursor-blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+    @keyframes blink-border {
+
+        0%,
+        100% {
+            border-color: var(--color-primary);
+        }
+
+        50% {
+            border-color: transparent;
+        }
     }
 
     .animate-typewriter {
-        display: inline-block;
+        display: inline-flex;
         overflow: hidden;
         white-space: nowrap;
-        box-sizing: border-box;
+        box-sizing: content-box;
         vertical-align: bottom;
         width: 9ch;
-        animation: typewriter 1s steps(9) forwards;
-    }
-
-    .terminal-cursor {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 8px;
-        height: 90%;
-        background-color: var(--color-primary);
-        animation: cursor-blink 0.8s step-end infinite;
+        border-right: 8px solid var(--color-primary);
+        animation: typewriter 1s steps(9) forwards, blink-border 0.8s step-end infinite;
     }
 
     /* Webkit Scrollbar Styling */

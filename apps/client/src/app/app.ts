@@ -4,9 +4,11 @@ import { NavbarComponent } from './components/navbar/navbar';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 
+import { FooterComponent } from './components/ui/elements/footer/footer';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.html',
 })
 export class App {

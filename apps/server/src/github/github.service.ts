@@ -6,6 +6,7 @@ import { GithubRepo, GithubUserInfo } from "@/types"
 
 @Injectable()
 export class GithubService {
+
     private client: Octokit;
 
     constructor(private configService: ConfigService) {
