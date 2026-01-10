@@ -11,26 +11,26 @@
                 Hi, I'm <span class="text-primary">Roee Heily</span>
             </h1>
 
-            <div class="space-y-6 text-lg text-text-muted leading-relaxed max-w-xl">
-                <p class="text-text-base max-w-prose text-lg leading-relaxed w-fit"
+            <div class="space-y-6 text-md text-text-muted leading-relaxed max-w-xl">
+                <p class="text-text-base max-w-prose leading-relaxed w-fit"
                     [style.view-transition-name]="'hero-description'">
                     I'm a 21-year-old Software Developer @
                     <text-link content="Israel, Lod"
                         url="https://maps.app.goo.gl/LodBK2q5NZbwofKm6" />.
                 </p>
-                <p class="text-text-base max-w-prose text-lg leading-relaxed w-fit">I've written software trusted by
-                    many clients, startups and the IDF</p>
-                <p class="text-text-base max-w-prose text-lg leading-relaxed w-fit">My strength is my attention to
+                <p class="text-text-base max-w-prose text-md leading-relaxed w-fit">I've written software trusted by
+                    clients, startups and the IDF</p>
+                <p class="text-text-base max-w-prose text-md leading-relaxed w-fit">My strength is my attention to
                     detail <br> My weakness is my attention to detail</p>
-                <p class="text-text-base max-w-prose text-lg leading-relaxed w-fit">My work revolves mostly around
+                <p class="text-text-base max-w-prose text-md leading-relaxed w-fit">My work revolves mostly around
                     backend development and system architecture.</p>
-                <p class="text-text-base max-w-prose text-lg leading-relaxed w-fit">
+                <p class="text-text-base max-w-prose text-md leading-relaxed w-fit">
                     Outside of software, I enjoy hitting the gym, drinking beer, playing 8-ball pool or pocker, and
                     snowboarding. Feel free to contact me!
                 </p>
 
                 <div
-                    class="flex flex-row flex-wrap items-center gap-4 pt-2 text-text-base max-w-prose text-lg leading-relaxed w-fit">
+                    class="flex flex-row flex-wrap items-center gap-4 pt-2 text-text-base max-w-prose text-xl leading-relaxed w-fit">
                     @for (social of socials; track social.text) {
                     <social-link [icon]="social.icon" [url]="social.url" [text]="social.text"
                         [style.view-transition-name]="'social-' + social.text" />

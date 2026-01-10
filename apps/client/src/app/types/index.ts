@@ -1,4 +1,4 @@
-import { GithubRepo } from '../../../../../types/github';
+import { GithubRepo } from '#/packages/types';
 
 export type Social = {
     icon: string;

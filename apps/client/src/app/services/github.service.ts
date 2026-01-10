@@ -1,4 +1,4 @@
-import { GithubUserInfo } from "#/types";
+import { GithubUserInfo } from "@portifolio/types";
 import { inject, Injectable } from "@angular/core";
 import { injectQuery } from "@ngneat/query";
 import { AXIOS_CLIENT } from '@/app/services/axios.service'

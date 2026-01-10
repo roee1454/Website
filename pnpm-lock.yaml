@@ -78,6 +78,9 @@ importers:
       '@angular/compiler-cli':
         specifier: ^21.0.0
         version: 21.0.6(@angular/compiler@21.0.6)(typescript@5.9.3)
+      '@portifolio/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       '@tailwindcss/postcss':
         specifier: ^4.1.12
         version: 4.1.18
@@ -111,6 +114,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)
+      '@portifolio/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       octokit:
         specifier: ^5.0.5
         version: 5.0.5
@@ -190,6 +196,12 @@ importers:
       typescript-eslint:
         specifier: ^8.20.0
         version: 8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+
+  packages/types:
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
 packages:
 

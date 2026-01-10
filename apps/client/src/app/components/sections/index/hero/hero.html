@@ -26,10 +26,31 @@
                         name="lucideArrowRight" size="14" />
                 </a>
             </div>
-            <div class="mt-4 flex items-center gap-4">
+            <div class="mt-4 flex flex-col items-start sm:flex-row sm:items-center gap-4">
                 <app-terminal-trigger (click)="openSkills()" />
+                <app-experience />
             </div>
-            <app-experience />
+            <!-- <div class="mt-8">
+                <div
+                    class="flex items-center gap-4 px-3 py-1.5 rounded-sm border border-text-muted/5 bg-bg-container/30 w-fit">
+                    <div class="flex items-center gap-2 text-xs font-mono">
+                        <span class="text-primary font-bold opacity-70">PRIMARY STACK:</span>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1.5 group/stack">
+                                <ng-icon name="simpleAngular" size="13"
+                                    class="text-primary opacity-60 group-hover/stack:opacity-100 transition-opacity" />
+                                <span class="text-text-base font-medium">Angular</span>
+                            </div>
+                            <span class="text-text-muted/20 text-[10px] select-none">/</span>
+                            <div class="flex items-center gap-1.5 group/stack">
+                                <ng-icon name="simpleNestjs" size="13"
+                                    class="text-primary opacity-60 group-hover/stack:opacity-100 transition-opacity" />
+                                <span class="text-text-base font-medium">Nest.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
             <app-skills-section />
         </section>
     </div>

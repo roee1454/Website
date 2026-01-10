@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Octokit } from 'octokit';
-import { GithubRepo, GithubUserInfo } from "@/types"
+import { GithubRepo, GithubUserInfo } from "@portifolio/types"
 
 
 @Injectable()
@@ -35,6 +35,14 @@ export class GithubService {
             };
         }
         catch (err) {
+            throw new InternalServerErrorException(err.message)
+        }
+    }
+
+    private async fetchReadme(repo: GithubRepo) {
+        try {
+            return await this.client.rest.repos.getReadme({ repo: repo.full_name, owner: repo.owner.url })
+        } catch (err) {
             throw new InternalServerErrorException(err.message)
         }
     }

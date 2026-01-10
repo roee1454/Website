@@ -5,7 +5,7 @@ import { GithubService } from "@/app/services/github.service";
 import { RouteLink } from "@/app/components/ui/typography/route-link/route-link";
 import { ProjectCardComponent } from "@/app/components/ui/elements/project-card/project-card";
 import { CardSkeletonComponent } from "@/app/components/ui/elements/card-skeleton/card-skeleton";
-import { GithubRepo } from '../../../../../../../../types/github';
+import { GithubRepo } from '../../../../../../../../packages/types/github';
 import { Project } from "@/app/types";
 
 @Component({

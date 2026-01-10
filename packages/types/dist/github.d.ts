@@ -106,7 +106,6 @@ export type GithubRepo = {
         pull: boolean;
     };
 };
-
 export type GithubUserInfo = {
     user: {
         name: string;
