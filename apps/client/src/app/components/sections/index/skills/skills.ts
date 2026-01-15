@@ -6,7 +6,7 @@ import { NgIconsModule } from '@ng-icons/core';
   selector: 'app-skills-section',
   standalone: true,
   imports: [CommonModule, NgIconsModule],
-  templateUrl: './skills.html'
+  templateUrl: './skills.html',
 })
 export class SkillsSectionComponent {
   public isOpen = signal(false);
@@ -14,42 +14,46 @@ export class SkillsSectionComponent {
   protected showContent = signal(false);
 
   protected skillsCategories = [
-    { 
-      name: "skills",
-      items: "Linux Environments, Web Dev, Android Dev, Image & Video Processing" 
+    {
+      name: 'skills',
+      items: 'Linux Environments, Web Dev, Android Dev, Image & Video Processing',
     },
     {
       name: 'Languages',
-      items: 'Python, TypeScript, C++, Kotlin, Bash, SQL'
+      items: 'C++, Python, TypeScript, JavaScript, Kotlin, SQL',
     },
     {
-      name: 'Frontend',
-      items: 'Angular, React, Next.js, Jetpack Compose'
-    },
-    {
-      name: "Backend",
-      items: "Nest.js, Express.js, Flask, Ktor"
+      name: 'Frameworks & Runtimes',
+      items: 'React, React Native, Angular, Jetpack Compose, Nest.js, Node.js, Flask',
     },
     {
       name: 'Databases',
-      items: 'MySQL, PostgreSQL, Redis, Firebase, MongoDB'
+      items: 'PostgreSQL, MySQL, Redis, Firebase',
     },
     {
-      name: "Computer Vision",
-      items: "OpenCV, Numpy/Eigen, FFmpeg, Ultralytics/Yolo",
+      name: 'Computer Vision',
+      items: 'OpenCV, FFmpeg, GStreamer, NumPy',
     },
     {
-      name: 'Deployment & Cloud',
-      items: 'GitHub CI/CD, Docker, Railway, Cloudflare, NGINX'
-    }
+      name: 'Devops & Deployment',
+      items: 'GitHub CI/CD, Docker, Nginx',
+    },
   ];
 
   protected info = [
     { key: 'OS', value: 'Arch Linux x86_64' },
     { key: 'Shell', value: 'bash 5.2.21' },
-    { key: "Title", value: "Software Developer" },
-    { key: 'Experience', value: "3 Years" }
+    { key: 'Title', value: 'Software Developer' },
+    { key: 'Experience', value: this.calculateExperience(new Date('2023-08-08')) },
   ];
+
+  private calculateExperience(startDate: Date): string {
+    const today = new Date();
+    const diffTime = Math.abs(today.getTime() - startDate.getTime());
+    const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
+    // Round up to the nearest 0.1 to match user's professional experience estimation
+    return (Math.ceil(diffYears * 10) / 10).toFixed(1) + ' Years';
+  }
 
   open() {
     this.isOpen.set(true);

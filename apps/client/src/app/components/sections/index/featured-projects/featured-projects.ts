@@ -16,7 +16,7 @@ import { Project } from "@/app/types";
 
 export class FeaturedProjectsComponent {
     protected userInfo = inject(GithubService).getUserInfo()
-    protected featuredProjects = ["DTransfer", "MotionStudioAI"]
+    protected featuredProjects = ["BetterNext", "RustyHttp"]
 
     mapRepoToProject(repo: GithubRepo): Project {
         const pushedDate = new Date(repo.pushed_at);

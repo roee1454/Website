@@ -23,7 +23,7 @@ export class ExperienceComponent {
             title: "Julius Agency",
             past: true,
             position: "Software Developer",
-            descirption: "Built applications using Next.js and React Native, deploying web and mobile products with Github CI/CD, Firebase and Railway.",
+            descirption: "Built applications using Next.js and React Native, deploying web and mobile products to production via Google Play & Firebase.",
             from: new Date("2024-02-02"),
             to: new Date("2024-12-31"),
             siteUrl: "https://julius-agency.co.il/he"
