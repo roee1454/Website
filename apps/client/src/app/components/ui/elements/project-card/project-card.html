@@ -1,85 +1,97 @@
 <a [href]="project().url" target="_blank" [style.view-transition-name]="'project-' + project().id"
-    class="group relative flex flex-col h-full overflow-hidden border border-text-muted/10 bg-bg-container p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-bg-surface/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+    class="group relative flex flex-col h-full overflow-hidden border border-text-muted/10 bg-bg-container transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-bg-surface/80 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
 
-    <!-- Top Bar: Icon and Type -->
-    <div class="mb-4 flex items-center justify-between">
-        <div class="rounded-lg bg-primary/10 pt-2 px-2 text-primary">
-            @if (project().isTemplate) {
-            <ng-icon name="lucideFolder" size="20"></ng-icon>
+    <!-- Thumbnail Section -->
+    <div class="relative aspect-video w-full overflow-hidden bg-bg-surface/50">
+        @if (thumbnailQuery().result$ | async; as thumb) {
+            @if (thumb.isLoading) {
+                <div class="h-full w-full animate-pulse bg-text-muted/10"></div>
+            } @else if (thumb.data && !thumbnailError()) {
+                <img [src]="thumb.data" [alt]="project().name" (error)="handleImageError()"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
             } @else {
-            <ng-icon name="lucideGithub" size="20"></ng-icon>
+                <!-- Fallback / Placeholder -->
+                <div class="flex h-full w-full flex-col items-center justify-center bg-linear-to-br from-primary/5 to-primary/20 p-6 text-primary/40">
+                    <ng-icon name="lucideCode2" size="48" class="mb-2 opacity-20"></ng-icon>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">{{ project().name }}</span>
+                </div>
             }
-        </div>
-        <div class="flex items-center gap-3">
-            @if (project().homepage) {
-            <a [href]="project().homepage" target="_blank" (click)="$event.stopPropagation()"
-                class="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
-                <span>Live Demo</span>
-                <ng-icon name="lucideExternalLink" size="14"></ng-icon>
-            </a>
-            }
-            <div
-                class="flex items-center gap-1.5 text-xs font-semibold text-text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span>View Source</span>
-                <ng-icon name="lucideArrowRight" size="14"></ng-icon>
-            </div>
-        </div>
-    </div>
-
-    <!-- Title and Description -->
-    <div class="flex-1 space-y-2">
-        <h3
-            class="text-xl font-bold tracking-tight text-text-base transition-colors group-hover:text-primary flex flex-wrap items-center gap-2">
-            {{ project().name }}
-            @if (project().isTemplate) {
-            <span class="rounded-full bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-indigo-600">
-                Template
-            </span>
-            }
-            @if (project().isWip) {
-            <span class="rounded-full bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-600">
-                WIP
-            </span>
-            }
+        }
+        
+        <!-- Overlay Badges -->
+        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
             @if (project().isNew) {
-            <span
-                class="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary animate-pulse">
+            <span class="rounded-full bg-primary/90 px-2 py-0.5 text-[10px] font-bold uppercase text-white shadow-sm backdrop-blur-sm">
                 New
             </span>
             }
-
-        </h3>
-        <p class="line-clamp-2 text-sm leading-relaxed text-text-muted">
-            {{ project().description || 'No description provided' }}
-        </p>
+            @if (project().isWip) {
+            <span class="rounded-full bg-amber-500/90 px-2 py-0.5 text-[10px] font-bold uppercase text-white shadow-sm backdrop-blur-sm">
+                WIP
+            </span>
+            }
+        </div>
     </div>
 
-    <!-- Tech Stack (Topics) -->
-    <div class="mt-4 flex flex-wrap items-center gap-1.5">
-        <ng-icon name="lucideTag" size="14" class="text-text-muted/50 mr-0.5" />
-        @for (topic of project().topics.slice(0, 6); track topic) {
-        <span
-            class="rounded-full bg-text-muted/5 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-text-muted transition-colors group-hover:bg-primary/5 group-hover:text-primary">
-            {{ topic }}
-        </span>
-        }
-    </div>
-
-    <!-- Footer Stats -->
-    <div class="mt-6 flex items-center justify-between pt-4 border-t border-text-muted/5">
-        <div class="flex items-center gap-4 text-xs font-medium text-text-muted">
-            <!-- Language -->
-            @if (project().primaryLanguage) {
-            <div class="flex items-center gap-1.5">
-                <span class="h-2 w-2 rounded-full bg-primary"></span>
-                <span>{{ project().primaryLanguage }}</span>
+    <div class="flex flex-col flex-1 p-6">
+        <!-- Top Bar: Icon and Type -->
+        <div class="mb-4 flex items-center justify-between">
+            <div class="rounded-lg bg-primary/10 pt-2 px-2 text-primary">
+                @if (project().isTemplate) {
+                <ng-icon name="lucideFolder" size="20"></ng-icon>
+                } @else {
+                <ng-icon name="lucideGithub" size="20"></ng-icon>
+                }
             </div>
+            <div class="flex items-center gap-3">
+                @if (project().homepage) {
+                <a [href]="project().homepage" target="_blank" (click)="$event.stopPropagation()"
+                    class="flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
+                    <span>Live</span>
+                    <ng-icon name="lucideExternalLink" size="14"></ng-icon>
+                </a>
+                }
+            </div>
+        </div>
+
+        <!-- Title and Description -->
+        <div class="flex-1 space-y-2">
+            <h3 class="text-xl font-bold tracking-tight text-text-base transition-colors group-hover:text-primary flex flex-wrap items-center gap-2">
+                {{ project().name }}
+                @if (project().isTemplate) {
+                <span class="rounded-full bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-indigo-600">
+                    Template
+                </span>
+                }
+            </h3>
+            <p class="line-clamp-2 text-sm leading-relaxed text-text-muted">
+                {{ project().description || 'No description provided' }}
+            </p>
+        </div>
+
+        <!-- Tech Stack (Topics) -->
+        <div class="mt-4 flex flex-wrap items-center gap-1.5">
+            @for (topic of project().topics.slice(0, 4); track topic) {
+            <span class="rounded-full bg-text-muted/5 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-text-muted transition-colors group-hover:bg-primary/5 group-hover:text-primary">
+                {{ topic }}
+            </span>
             }
         </div>
 
-        <span class="text-[10px] font-medium text-text-muted">
-            {{ project().updatedAt | date:'MMM yyyy' }}
-        </span>
+        <!-- Footer Stats -->
+        <div class="mt-6 flex items-center justify-between pt-4 border-t border-text-muted/5">
+            <div class="flex items-center gap-4 text-xs font-medium text-text-muted">
+                @if (project().primaryLanguage) {
+                <div class="flex items-center gap-1.5">
+                    <span class="h-2 w-2 rounded-full bg-primary"></span>
+                    <span>{{ project().primaryLanguage }}</span>
+                </div>
+                }
+            </div>
+            <span class="text-[10px] font-medium text-text-muted">
+                {{ project().updatedAt | date:'MMM yyyy' }}
+            </span>
+        </div>
     </div>
 
     <!-- Animated Accent Border -->

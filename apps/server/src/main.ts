@@ -1,15 +1,31 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { INestApplication } from '@nestjs/common';
+
+let cachedApp: INestApplication;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  if (cachedApp) return cachedApp;
+
+  const app = await NestFactory.create(AppModule, { rawBody: true });
 
   app.enableCors({
-    origin: 'http://localhost:4200',
+    origin: [process.env.CLIENT_ORIGIN as string, 'http://localhost:4200'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.init();
+  cachedApp = app;
+  return app;
 }
-bootstrap();
+
+if (process.env.NODE_ENV !== 'production') {
+  bootstrap().then((app) => app.listen(process.env.PORT ?? 3000));
+}
+
+export default async (req: any, res: any) => {
+  const app = await bootstrap();
+  const instance = app.getHttpAdapter().getInstance();
+  instance(req, res);
+};
