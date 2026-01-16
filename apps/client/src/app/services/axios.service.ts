@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import axios, { AxiosInstance } from 'axios';
-import { environment } from '../environments/environment.dev';
+import { environment } from '../environments/environment.prod';
 
 export const AXIOS_CLIENT = new InjectionToken<AxiosInstance>('AXIOS_CLIENT');
 
