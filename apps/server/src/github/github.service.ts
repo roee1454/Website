@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Octokit } from 'octokit';
+import type { Octokit } from 'octokit';
 import { GithubRepo, GithubUserInfo } from '@portifolio/types';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import type { Cache } from 'cache-manager';
@@ -13,16 +13,25 @@ import { createHmac, timingSafeEqual } from 'crypto';
 
 @Injectable()
 export class GithubService {
-  private client: Octokit;
+  private client: Octokit | null = null;
 
   constructor(
     private configService: ConfigService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-  ) {
-    this.client = new Octokit({
+  ) {}
+
+  private async getClient(): Promise<Octokit> {
+    if (this.client) return this.client;
+
+    const { Octokit } = await (eval('import("octokit")') as Promise<
+      typeof import('octokit')
+    >);
+    const client = new Octokit({
       auth: this.configService.get<string>('GITHUB_ACCESS_TOKEN'),
       userAgent: this.configService.get<string>('GITHUB_USER_AGENT'),
     });
+    this.client = client;
+    return client;
   }
 
   async handleWebhook(rawBody: Buffer, signature: string, payload: any) {
@@ -61,8 +70,9 @@ export class GithubService {
     }
 
     try {
-      const { data: user } = await this.client.rest.users.getAuthenticated();
-      const { data: repos } = await this.client.request('GET /user/repos', {
+      const client = await this.getClient();
+      const { data: user } = await client.rest.users.getAuthenticated();
+      const { data: repos } = await client.request('GET /user/repos', {
         visibility: 'public',
         affiliation: 'owner',
         sort: 'pushed',
@@ -103,11 +113,12 @@ export class GithubService {
     }
 
     const extensions = ['png', 'jpg', 'jpeg'];
-    const { data: user } = await this.client.rest.users.getAuthenticated();
+    const client = await this.getClient();
+    const { data: user } = await client.rest.users.getAuthenticated();
 
     for (const ext of extensions) {
       try {
-        const { data } = await this.client.rest.repos.getContent({
+        const { data } = await client.rest.repos.getContent({
           owner: user.login,
           repo: repoName,
           path: `thumbnail/${repoName}.${ext}`,
