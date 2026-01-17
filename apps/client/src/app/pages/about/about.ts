@@ -6,6 +6,6 @@ import { AboutGallerySection } from '../../components/sections/about/about-galle
     selector: 'app-about',
     templateUrl: './about.html',
     standalone: true,
-    imports: [AboutHeroSection, AboutGallerySection]
+    imports: [AboutHeroSection]
 })
 export class AboutComponent { }
