@@ -2,6 +2,8 @@
 
 My personal website for project showcase.
 
-### Tech Stack
+### Technologies & Tools
 - Angular
 - Nest.js
+- Github API
+- Linkedin API
