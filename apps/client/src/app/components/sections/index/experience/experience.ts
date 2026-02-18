@@ -10,7 +10,7 @@ export class ExperienceComponent {
     protected experiences: Experience[] = [
         {
             src: "/resources/icons/idf.png",
-            title: "IDF - Hatal",
+            title: "IDF",
             past: false,
             position: "Software Engineer",
             descirption: "Built real software solutions for the IDF, focusing on full-stack development, android development and computer vision.",

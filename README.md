@@ -6,4 +6,3 @@ My personal website for project showcase.
 - Angular
 - Nest.js
 - Github API
-- Linkedin API

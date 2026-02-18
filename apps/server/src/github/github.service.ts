@@ -50,7 +50,6 @@ export class GithubService {
       throw new ForbiddenException('Invalid signature');
     }
 
-    // If it's a push event, clear the cache for that repo
     const repoName = payload.repository?.name;
     if (repoName) {
       await this.cacheManager.del('github:user_info');
